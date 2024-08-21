@@ -6,29 +6,62 @@ import os
 import shutil
 
 def search():    
+    def and_search(terms):
+        results = rwe.find_target(terms[0])
+        for term in terms[1:]:
+            next_results = rwe.find_target(term)
+            results = results[results.index.isin(next_results.index)]
+        return results
+
+    def or_search(terms):
+        results = rwe.find_target(terms[0])
+        for term in terms[1:]:
+            next_results = rwe.find_target(term)
+            results = results.append(next_results).drop_duplicates()
+        return results
+    
     # 搜尋名稱/標籤
     clean_dataview()
     print("搜尋: " + search_entry.get())
+    search_target = search_entry.get()
 
-    data = []
+    if "+" in search_target and "|" in search_target:
+        messagebox.showerror("搜尋輸入錯誤","不可同時使用「+」和「|」")
+        refresh()
+    else:    
+        data = []
 
-    for index, row in rwe.find_target(search_entry.get()).iterrows():
-        filtered_row = [item for i, item in enumerate(row) if i != 1]
-        data.append(filtered_row)
+        if "+" in search_target:
+            terms = search_target.split('+')
+            results = and_search(terms)
+        elif "|" in search_target:
+            terms = search_target.split('|')
+            results = or_search(terms)
+        else:
+            results = rwe.find_target(search_target)
 
-    # 排序
-    data = sorted(data,key=lambda x:x[0])
+        for index, row in results.iterrows():
+            filtered_row = [item for i, item in enumerate(row) if i != 1]
+            data.append(filtered_row)
 
-    # 篩選種類
+        # 排序
+        data = sorted(data, key=lambda x: x[0])
 
-    if combo.get() == '小說' or combo.get() == '漫畫' or combo.get() == '動畫':
-        data = [item for item in data if item[1] == combo.get()]
+        # 依據種類選擇
+        if combo.get() in ['小說', '漫畫', '動畫']:
+            data = [item for item in data if item[1] == combo.get()]
 
-    for item in data:
-        tree.insert("", tk.END, values=item)
+        clean_dataview()
+        for item in data:
+            tree.insert("", tk.END, values=item)
+
+        search_entry.delete(0, tk.END)
+
 
 def refresh():
     # 刷新資料
+    search_entry.delete(0, tk.END)
+    combo.set("請選擇")
     clean_dataview()
     load_all()
 
