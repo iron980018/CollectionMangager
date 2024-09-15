@@ -2,8 +2,8 @@
 
 一個與MangaFolderManager相似的輕量化收藏管理器  
 
-![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManager overview0.jpg)  
-![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManager overview1.jpg)   
+![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManagerOverview0.jpg)  
+![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManagerOverview1.jpg)   
   
 # 更新日誌
 2024/8/19:  
