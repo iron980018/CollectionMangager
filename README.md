@@ -2,12 +2,12 @@
 
 一個與MangaFolderManager相似的輕量化收藏管理器  
 
-![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManagerOverview0.jpg)  
-![image](https://github.com/iron980018/CollectionMangager/blob/main/CollectionManagerOverview1.jpg)   
+![image](https://github.com/iron980018/CollectionMangager/blob/main/pictures/CollectionManagerOverview0.jpg)  
+![image](https://github.com/iron980018/CollectionMangager/blob/main/pictures/CollectionManagerOverview1.jpg)   
 
 # 使用說明  
 ## 新增所選資料夾:
-![image](https://github.com/iron980018/CollectionMangager/blob/main/info1.jpg) 
+![image](https://github.com/iron980018/CollectionMangager/blob/main/pictures/info1.jpg) 
 ## 搜尋方式:  
 搜尋A"且"B使用"+" -> A+B  
 搜尋A"或"B使用"|" -> A|B  
